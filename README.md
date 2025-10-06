@@ -1,11 +1,12 @@
-Proposed solution:
+## Proposed solution
 The "calibrate.py" script calibrates a radar and lidar by matching corresponding detections of an orange corner reflector. To this end, it first applies distance filters to each sensor's data to reduce noise. It then identifies the reflector's specific location using two different methods: 
 - For radar, it leverages a pre-assigned color tag (presumably obtained by sensor fusion with camera) corresponding to the object's color by selecting the point with the minimum green-channel value.
 - For lidar, it applies DBSCAN clustering to points that pass an intensity threshold. After clustering, it identifies the smallest valid cluster (assuming the reflector is the smallest distinct object in the ROI).
 <!-- -->
 Using these corresponding points, an optimization routine computes the rigid body transformation that best aligns the two sensors. Finally, the accuracy of this alignment is confirmed by projecting both sensors' data onto a camera image to verify the calibration.
 
-Task: Make a tool to perform the extrinsic calibration of the radar and lidar ( rotation and translation matrix )
+## Task 
+Make a tool to perform the extrinsic calibration of the radar and lidar ( rotation and translation matrix )
 
 The radar has no elevation so z component is not reliable and should be ignored, that makes the problem simpler as we need just one angle in the rotation matrix.
 
